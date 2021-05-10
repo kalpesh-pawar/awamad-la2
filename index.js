@@ -1,26 +1,46 @@
-const express = require('express')
-const app = express()
-const port = 5000
+import React from 'react'
+import ReactDOM, { render } from 'react-dom'
+//import Question from './Question'
+//import Questioncard from './Questioncard'
+//import Form from './Form'
 
-app.get('/', fun,morefun)
+//import Main from './Main'
+//import Addque from './Addque'
+//import styles from './index.css'
+//import Register  from './Register'
+import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom'
+import {withRouter} from 'react-router'
+import App from './App'
+import Header from './component/Header'
+import Register from './component/Register'
+import Home from './pages/Home'
+import Login from './component/Login'
 
-function morefun(req,res,next){
-    res.redirect('/home')
+
+
+function Appl(){
+    return(
+      <div>
+        
+           <Router >
+             <div>
+           <Header/>       
+        
+        <switch>
+                                <Route exact path='/home' component={withRouter(Home)} ></Route>
+                                <Route exact path='/following' ></Route>
+                                <Route exact path='/notification' component={withRouter(Notification)}></Route>
+                                <Route exact path='/addque' ></Route>
+                                <Route exact path='/register' component={withRouter(Register)}></Route>
+                                <Route exact path='/login' component={withRouter(Login)}></Route>
+
+
+                            </switch>
+                            </div>
+        </Router>
+        </div>
+          )
+  
 }
 
-function fun(req,res,next){
-    next()
-    res.send('fun page')
-    
-}
-app.get('/freeroute',function(req,res){
-    res.send('extra route')
-})
-
-app.get('/home',(req,res)=>{
-    res.send('came from fun page to home ')
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+ReactDOM.render(<Appl/>,document.getElementById('content'))
